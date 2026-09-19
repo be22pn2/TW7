@@ -41,12 +41,16 @@
             btn.disabled = true;
             btn.textContent = 'Enviando...';
 
+            const obs = document.getElementById('member-mensagem').value.trim();
+            const mensagem = 'Método de pagamento: ' + document.getElementById('member-pagamento').value +
+                (obs ? '\n\nObservações: ' + obs : '');
+
             const payload = {
                 nome: document.getElementById('member-nome').value.trim(),
                 email: document.getElementById('member-email').value.trim(),
                 tag: document.getElementById('member-tag').value.trim(),
                 interesse: 'Quero ser membro - Plano ' + planSelect.value,
-                mensagem: document.getElementById('member-mensagem').value.trim()
+                mensagem: mensagem
             };
 
             try {
