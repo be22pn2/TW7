@@ -17,6 +17,7 @@
             <a href="#home" class="logo">TW<span class="logo-accent">7</span></a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home">Início</a></li>
+                <li><a href="sala.html">Sala AO VIVO</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#jogos">Modalidades</a></li>
                 <li><a href="#time">Lineup</a></li>
@@ -59,6 +60,17 @@
                 <span class="stat-number" data-target="1">0</span>
                 <span class="stat-label">Time</span>
             </div>
+        </div>
+    </section>
+
+    <section class="live-cta" id="sala">
+        <div class="container live-cta-inner">
+            <div class="live-cta-text">
+                <span class="live-cta-badge">AO VIVO</span>
+                <h2 class="live-cta-title">Sala AO VIVO</h2>
+                <p class="live-cta-text2">Entre no telão e acompanhe o torneio do TW7 em primeira mão.</p>
+            </div>
+            <a href="sala.html" class="btn btn-primary">Entrar na sala</a>
         </div>
     </section>
 
@@ -213,7 +225,21 @@
             </div>
 
             <div id="admin-panel" hidden>
+                <h4 class="admin-subtitle">Transmissão / Telão</h4>
+                <form id="admin-stream-form">
+                    <label class="contact-form-label" for="admin-stream-url">Link do vídeo (YouTube)</label>
+                    <input type="url" id="admin-stream-url" class="admin-input" placeholder="https://www.youtube.com/watch?v=...">
+                    <label class="contact-form-label" for="admin-stream-title">Título da transmissão</label>
+                    <input type="text" id="admin-stream-title" class="admin-input" placeholder="Final do Torneio TW7">
+                    <div class="admin-actions">
+                        <button type="submit" class="btn btn-primary">Ativar no telão</button>
+                        <button type="button" id="admin-stream-off" class="btn btn-outline">Encerrar live</button>
+                    </div>
+                    <p class="modal-hint">Quando ativo, a página "Sala AO VIVO" mostra o telão automaticamente.</p>
+                </form>
+
                 <form id="admin-event-form">
+                    <h4 class="admin-subtitle">Adicionar evento à agenda</h4>
                     <label class="contact-form-label" for="admin-date">Data</label>
                     <input type="date" id="admin-date" class="admin-input" required>
                     <label class="contact-form-label" for="admin-match">Partida</label>

@@ -162,7 +162,20 @@
             });
     }
 
-    async function fetchEvents(keyHeader) {
+    function normalizeRecord(record) {
+        return {
+            events: Array.isArray(record.events) ? record.events : [],
+            stream: record.stream && typeof record.stream === 'object'
+                ? {
+                    url: String(record.stream.url || ''),
+                    title: String(record.stream.title || ''),
+                    active: !!record.stream.active
+                }
+                : { url: '', title: '', active: false }
+        };
+    }
+
+    async function fetchRecord(keyHeader) {
         const headers = {};
         headers['X-' + keyHeader + '-Key'] = keyHeader === 'Master' ? adminKey : JSONBIN.readKey;
         const url = 'https://api.jsonbin.io/v3/b/' + JSONBIN.binId + '/latest';
@@ -171,10 +184,15 @@
             throw new Error('Falha ao ler agenda.');
         }
         const json = await response.json();
-        return Array.isArray(json.record.events) ? json.record.events : [];
+        return normalizeRecord(json.record || {});
     }
 
-    async function saveEvents(events) {
+    async function fetchEvents(keyHeader) {
+        const record = await fetchRecord(keyHeader);
+        return record.events;
+    }
+
+    async function saveRecord(record) {
         const url = 'https://api.jsonbin.io/v3/b/' + JSONBIN.binId;
         const response = await fetch(url, {
             method: 'PUT',
@@ -182,11 +200,17 @@
                 'X-Master-Key': adminKey,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ events: events })
+            body: JSON.stringify(record)
         });
         if (!response.ok) {
-            throw new Error('Falha ao salvar agenda.');
+            throw new Error('Falha ao salvar.');
         }
+    }
+
+    async function saveEvents(events) {
+        const record = await fetchRecord('Master');
+        record.events = events;
+        await saveRecord(record);
     }
 
     const scheduleList = document.getElementById('schedule-list');
@@ -288,7 +312,7 @@
             adminLocked.hidden = true;
             adminPanel.hidden = false;
             setAdminStatus('');
-            await loadAdminEvents();
+            await Promise.all([loadAdminEvents(), loadAdminStream()]);
         } catch (err) {
             adminKey = null;
             setAdminStatus('Chave inválida.', true);
@@ -365,6 +389,61 @@
             setAdminStatus('Erro ao excluir o evento.', true);
             console.error(err);
         }
+    }
+
+    /* ===== Transmissão (admin) ===== */
+    const adminStreamForm = document.getElementById('admin-stream-form');
+    const adminStreamOff = document.getElementById('admin-stream-off');
+
+    async function loadAdminStream() {
+        try {
+            const record = await fetchRecord('Master');
+            document.getElementById('admin-stream-url').value = record.stream.url;
+            document.getElementById('admin-stream-title').value = record.stream.title;
+        } catch (err) {
+            console.error('Erro ao carregar transmissão:', err);
+        }
+    }
+
+    if (adminStreamForm) {
+        adminStreamForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const url = document.getElementById('admin-stream-url').value.trim();
+            const title = document.getElementById('admin-stream-title').value.trim() || 'TW7 Arena';
+
+            if (!url) {
+                setAdminStatus('Informe um link para ativar a transmissão.', true);
+                return;
+            }
+
+            const btn = adminStreamForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Ativando...';
+            try {
+                const record = await fetchRecord('Master');
+                record.stream = { url: url, title: title, active: true };
+                await saveRecord(record);
+                setAdminStatus('Transmissão ativada no telão!');
+            } catch (err) {
+                setAdminStatus('Erro ao ativar a transmissão.', true);
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Ativar no telão';
+            }
+        });
+
+        adminStreamOff.addEventListener('click', async function () {
+            try {
+                const record = await fetchRecord('Master');
+                record.stream.active = false;
+                await saveRecord(record);
+                setAdminStatus('Live encerrada no telão.');
+            } catch (err) {
+                setAdminStatus('Erro ao encerrar a live.', true);
+                console.error(err);
+            }
+        });
     }
 
     renderPublicSchedule();

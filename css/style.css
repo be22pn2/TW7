@@ -727,6 +727,54 @@ ul {
     color: var(--red-bright);
 }
 
+/* ===== Live CTA ===== */
+.live-cta {
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(225, 6, 0, 0.18), transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(225, 6, 0, 0.12), transparent 50%),
+        var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 0;
+}
+
+.live-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.live-cta-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 0.72rem;
+    padding: 4px 12px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    box-shadow: 0 0 14px var(--glow);
+    margin-bottom: 10px;
+    animation: pulse-red 1.6s infinite;
+}
+
+.live-cta-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text);
+}
+
+.live-cta-text2 {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    margin-top: 6px;
+}
+
 /* ===== Admin ===== */
 .admin-fab {
     position: fixed;
@@ -855,6 +903,18 @@ ul {
     letter-spacing: 1px;
 }
 
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.admin-actions .btn {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 0.8rem;
+}
+
 .admin-events-list {
     display: flex;
     flex-direction: column;
@@ -908,6 +968,146 @@ ul {
     background: var(--red);
     border-color: var(--red);
     color: var(--text);
+}
+
+/* ===== Sala AO VIVO ===== */
+.sala-body {
+    background: var(--bg);
+    min-height: 100vh;
+}
+
+.sala-main {
+    padding: 96px 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.sala-vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 30%, rgba(225, 6, 0, 0.12), transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(225, 6, 0, 0.08), transparent 50%);
+    z-index: 0;
+}
+
+.sala-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 32px;
+}
+
+.sala-badge {
+    display: inline-block;
+    background: var(--red);
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 0 18px var(--glow);
+    margin-bottom: 16px;
+    animation: pulse-red 1.6s infinite;
+}
+
+.sala-badge.off {
+    background: var(--border);
+    box-shadow: none;
+    animation: none;
+}
+
+@keyframes pulse-red {
+    0%, 100% { box-shadow: 0 0 10px rgba(225, 6, 0, 0.5); }
+    50% { box-shadow: 0 0 26px rgba(225, 6, 0, 0.95); }
+}
+
+.sala-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text);
+}
+
+.sala-subtitle {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    margin-top: 6px;
+}
+
+.sala-screen {
+    position: relative;
+    z-index: 1;
+    border: 1px solid #3a1a1d;
+    border-radius: 14px;
+    padding: 14px;
+    background:
+        linear-gradient(180deg, #141014 0%, #0a0a0c 100%);
+    box-shadow:
+        0 0 0 4px rgba(225, 6, 0, 0.08),
+        0 0 60px rgba(225, 6, 0, 0.18),
+        0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.sala-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #050506;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sala-stage iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.sala-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background:
+        radial-gradient(ellipse at center, rgba(225, 6, 0, 0.14), transparent 70%),
+        #050506;
+}
+
+.sala-placeholder-icon {
+    font-size: 3rem;
+    opacity: 0.7;
+}
+
+.sala-placeholder h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--text);
+    letter-spacing: 1px;
+}
+
+.sala-placeholder p {
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+.sala-note {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-top: 28px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* ===== Reveal animation ===== */
