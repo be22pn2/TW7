@@ -517,6 +517,30 @@ ul {
     box-shadow: 0 0 28px var(--glow);
 }
 
+.member-soon {
+    border: 1px dashed var(--border);
+    cursor: default;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.member-soon:hover {
+    border-color: var(--border);
+    transform: none;
+    box-shadow: none;
+}
+
+.member-soon:hover .member-avatar {
+    box-shadow: none;
+}
+
+.avatar-soon {
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    box-shadow: none;
+    color: var(--text-dim);
+    font-size: 1.6rem;
+}
+
 .member-avatar {
     width: 84px;
     height: 84px;
