@@ -28,8 +28,8 @@
             nome: 'Mrtns',
             role: 'Rocket League',
             iniciais: 'MR',
-            frase: 'Chute forte, mentira nenhuma.',
-            bio: 'A força bruta do TW7 nas quadras de Rocket League. Mrtns é o jogador de presença física: chutes potentes, disputas ganhas e uma leitura de jogo que transforma rebotes em gol. Complementa o elenco com consistência e determinação em todos os treinos.'
+            frase: 'Em busca da defesa perfeita.',
+            bio: 'Goleiro em fase de aprendizado, mas que já demonstra bons reflexos e segurança em momentos importantes. Tem facilidade para afastar bolas perigosas, bons tempos de reação e vem evoluindo a cada partida. Ainda tem muito a aprender, mas já mostra potencial para se tornar uma peça importante no gol.'
         }
     };
 
