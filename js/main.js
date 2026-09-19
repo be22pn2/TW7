@@ -25,11 +25,11 @@
             bio: 'O jogador mais agressivo do elenco. Murahhhh10 adora push, box fight e edição rápida. É quem abre espaço e cria as melhores oportunidades de kill do TW7 em Fortnite. Quando ele entra no modo "mura", o lobby aprende a respeitar o vermelho.'
         },
         siqueira: {
-            nome: 'Martins',
+            nome: 'Mrtns',
             role: 'Rocket League',
-            iniciais: 'MA',
+            iniciais: 'MR',
             frase: 'Chute forte, mentira nenhuma.',
-            bio: 'A força bruta do TW7 nas quadras de Rocket League. Martins é o jogador de presença física: chutes potentes, disputas ganhas e uma leitura de jogo que transforma rebotes em gol. Complementa o elenco com consistência e determinação em todos os treinos.'
+            bio: 'A força bruta do TW7 nas quadras de Rocket League. Mrtns é o jogador de presença física: chutes potentes, disputas ganhas e uma leitura de jogo que transforma rebotes em gol. Complementa o elenco com consistência e determinação em todos os treinos.'
         }
     };
 
