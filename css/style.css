@@ -710,6 +710,27 @@ ul {
     font-size: 0.98rem;
 }
 
+.footer-member-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 14px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text);
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.footer-member-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px var(--glow);
+}
+
 .footer-links {
     display: flex;
     gap: 22px;
