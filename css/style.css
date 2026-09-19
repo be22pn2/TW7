@@ -499,12 +499,22 @@ ul {
     padding: 30px;
     text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.member-card:focus-visible {
+    outline: 2px solid var(--red-bright);
+    outline-offset: 2px;
 }
 
 .member-card:hover {
     border-color: var(--red);
     transform: translateY(-6px);
     box-shadow: 0 12px 32px rgba(225, 6, 0, 0.18);
+}
+
+.member-card:hover .member-avatar {
+    box-shadow: 0 0 28px var(--glow);
 }
 
 .member-avatar {
@@ -899,6 +909,39 @@ ul {
     color: var(--text-dim);
     font-size: 1rem;
     margin-bottom: 18px;
+}
+
+/* ===== Bio do jogador ===== */
+.player-modal-content {
+    width: min(560px, 100%);
+    text-align: center;
+}
+
+.player-hero {
+    margin-bottom: 20px;
+}
+
+.player-avatar {
+    width: 96px;
+    height: 96px;
+    font-size: 1.6rem;
+    animation: none;
+}
+
+.player-quote {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--red-bright);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.player-bio {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 .contact-form-label {

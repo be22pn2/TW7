@@ -133,22 +133,22 @@
                 <p class="section-subtitle">Os jogadores que vestem o vermelho</p>
             </div>
             <div class="team-grid">
-                <article class="member-card">
+                <article class="member-card" data-player="morfeu" role="button" tabindex="0" aria-label="Ver bio do Morfeu">
                     <div class="member-avatar">MO</div>
                     <h3>Morfeu</h3>
                     <span class="member-role">Rocket League</span>
                 </article>
-                <article class="member-card">
+                <article class="member-card" data-player="survivor" role="button" tabindex="0" aria-label="Ver bio do Survivor">
                     <div class="member-avatar">SU</div>
                     <h3>Survivor</h3>
                     <span class="member-role">Fortnite</span>
                 </article>
-                <article class="member-card">
+                <article class="member-card" data-player="murahhhh10" role="button" tabindex="0" aria-label="Ver bio do Murahhhh10">
                     <div class="member-avatar">MU</div>
                     <h3>Murahhhh10</h3>
                     <span class="member-role">Fortnite</span>
                 </article>
-                <article class="member-card">
+                <article class="member-card" data-player="siqueira" role="button" tabindex="0" aria-label="Ver bio do Siqueira">
                     <div class="member-avatar">SI</div>
                     <h3>Siqueira</h3>
                     <span class="member-role">Rocket League</span>
@@ -216,6 +216,19 @@
     <button class="admin-fab" id="admin-fab" aria-label="Área do time" title="Área do time">🔐</button>
 
     <a class="admin-fab telao-fab" href="sala.html" aria-label="Sala AO VIVO" title="Sala AO VIVO">▶</a>
+
+    <div class="modal" id="player-modal" aria-hidden="true">
+        <div class="modal-content player-modal-content">
+            <button class="modal-close" id="player-modal-close" aria-label="Fechar">×</button>
+            <div class="player-hero">
+                <div class="member-avatar player-avatar" id="player-avatar">--</div>
+                <h3 class="modal-title" id="player-name"></h3>
+                <span class="member-role" id="player-role"></span>
+            </div>
+            <p class="player-quote" id="player-quote"></p>
+            <p class="player-bio" id="player-bio"></p>
+        </div>
+    </div>
 
     <div class="modal" id="admin-modal" aria-hidden="true">
         <div class="modal-content">

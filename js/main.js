@@ -1,6 +1,94 @@
 (function () {
     'use strict';
 
+    /* ===== Bio dos jogadores ===== */
+    const PLAYERS = {
+        morfeu: {
+            nome: 'Morfeu',
+            role: 'Rocket League',
+            iniciais: 'MO',
+            frase: 'Sonho acordado. Jogo dormindo? Não — jogo aerielo.',
+            bio: 'O cérebro do ataque aéreo do TW7. Morfeu dita o ritmo do time, fazendo reads impossíveis de bola alta e organizando a pressão na base adversária. Calmo sob pressão e explosivo no momento certo, é ele quem segura a estrutura do elenco de Rocket League.'
+        },
+        survivor: {
+            nome: 'Survivor',
+            role: 'Fortnite',
+            iniciais: 'SU',
+            frase: 'O último a cair é quem leva a Victory Royale.',
+            bio: 'Especialista em finais de partida e tomadas de decisão sob pressão, Survivor é a prova viva de que sobrevivência é uma arte. Mecânica afiada nas box fights e uma calma absurda nas zonas finais — o tipo de jogador que brilha quando o jogo fica feio.'
+        },
+        murahhhh10: {
+            nome: 'Murahhhh10',
+            role: 'Fortnite',
+            iniciais: 'MU',
+            frase: 'Se você ver a minha piada, é porquê eu escolhi mostrar.',
+            bio: 'O jogador mais agressivo do elenco. Murahhhh10 adora push, box fight e edição rápida. É quem abre espaço e cria as melhores oportunidades de kill do TW7 em Fortnite. Quando ele entra no modo "mura", o lobby aprende a respeitar o vermelho.'
+        },
+        siqueira: {
+            nome: 'Siqueira',
+            role: 'Rocket League',
+            iniciais: 'SI',
+            frase: 'Chute forte, mentira nenhuma.',
+            bio: 'A força bruta do TW7 nas quadras de Rocket League. Siqueira é o jogador de presença física: chutes potentes, disputas ganhas e uma leitura de jogo que transforma rebotes em gol. Complementa o elenco com consistência e determinação em todos os treinos.'
+        }
+    };
+
+    const playerModal = document.getElementById('player-modal');
+    const playerModalClose = document.getElementById('player-modal-close');
+    const playerNameEl = document.getElementById('player-name');
+    const playerRoleEl = document.getElementById('player-role');
+    const playerAvatarEl = document.getElementById('player-avatar');
+    const playerQuoteEl = document.getElementById('player-quote');
+    const playerBioEl = document.getElementById('player-bio');
+
+    function openPlayerModal(slug) {
+        const player = PLAYERS[slug];
+        if (!playerModal || !player) return;
+        playerNameEl.textContent = player.nome;
+        playerRoleEl.textContent = player.role;
+        playerAvatarEl.textContent = player.iniciais;
+        playerQuoteEl.textContent = player.frase;
+        playerBioEl.textContent = player.bio;
+        playerModal.classList.add('open');
+        playerModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closePlayerModal() {
+        if (!playerModal) return;
+        playerModal.classList.remove('open');
+        playerModal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('.member-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+            openPlayerModal(card.dataset.player);
+        });
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openPlayerModal(card.dataset.player);
+            }
+        });
+    });
+
+    if (playerModalClose) {
+        playerModalClose.addEventListener('click', closePlayerModal);
+    }
+
+    if (playerModal) {
+        playerModal.addEventListener('click', function (e) {
+            if (e.target === playerModal) {
+                closePlayerModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && playerModal && playerModal.classList.contains('open')) {
+            closePlayerModal();
+        }
+    });
+
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('nav-toggle');
     const navLinks = document.getElementById('nav-links');
