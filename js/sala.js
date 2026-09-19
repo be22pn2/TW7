@@ -11,15 +11,19 @@
     const title = document.getElementById('sala-title');
     const subtitle = document.getElementById('sala-subtitle');
 
-    function getYouTubeEmbed(url) {
+    function getEmbedUrl(url) {
         const video = url.match(/(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
         if (video) {
             return 'https://www.youtube.com/embed/' + video[1] + '?autoplay=1';
         }
-        const channel = url.match(/youtube\.com\/(?:c\/|channel\/|@)?([a-zA-Z0-9_@-]+)/);
-        if (channel && /^[a-zA-Z0-9_-]{5,}$/.test(channel[1]) && !/@/.test(channel[1])) {
-            return null;
+
+        const twitch = url.match(/(?:twitch\.tv|www\.twitch\.tv)\/([a-zA-Z0-9_]{3,25})/);
+        if (twitch) {
+            const host = window.location.hostname || 'be22pn2.github.io';
+            return 'https://player.twitch.tv/?channel=' + encodeURIComponent(twitch[1]) +
+                '&parent=' + encodeURIComponent(host) + '&autoplay=true';
         }
+
         return null;
     }
 
@@ -42,7 +46,7 @@
             const stream = (json.record && json.record.stream) || { url: '', title: '', active: false };
 
             if (stream.active && stream.url) {
-                const embed = getYouTubeEmbed(stream.url);
+                const embed = getEmbedUrl(stream.url);
                 stage.innerHTML = '';
                 const iframe = document.createElement('iframe');
                 iframe.src = embed || stream.url;
