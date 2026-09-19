@@ -139,48 +139,6 @@
         });
     }
 
-    /* ===== Formulário de membros ===== */
-    const memberForm = document.getElementById('member-form');
-    const memberStatus = document.getElementById('member-status');
-
-    if (memberForm) {
-        memberForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const btn = memberForm.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-
-            btn.disabled = true;
-            btn.textContent = 'Enviando...';
-
-            const payload = {
-                nome: document.getElementById('member-nome').value.trim(),
-                email: document.getElementById('member-email').value.trim(),
-                tag: document.getElementById('member-tag').value.trim(),
-                interesse: 'Quero virar membro - ' + document.getElementById('member-jogo').value,
-                mensagem: document.getElementById('member-mensagem').value.trim()
-            };
-
-            try {
-                const response = await emailjs.send('service_guyqafr', 'template_detjlid', payload);
-
-                if (response.status !== 200) {
-                    throw new Error('Falha no envio.');
-                }
-
-                memberForm.reset();
-                memberStatus.textContent = 'Pedido de membro enviado! Responderemos em breve.';
-                memberStatus.className = 'form-status success';
-            } catch (err) {
-                memberStatus.textContent = 'Não foi possível enviar agora. Tente novamente mais tarde.';
-                memberStatus.className = 'form-status error';
-                console.error('Erro no envio de membro:', err);
-            } finally {
-                btn.disabled = false;
-                btn.textContent = originalText;
-            }
-        });
-    }
-
     /* ===== Agenda (jsonbin) ===== */
     const JSONBIN = {
         binId: '6aae709effd5d16053191a89',
