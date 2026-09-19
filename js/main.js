@@ -59,16 +59,20 @@
         playerModal.setAttribute('aria-hidden', 'true');
     }
 
-    document.querySelectorAll('.member-card').forEach(function (card) {
-        card.addEventListener('click', function () {
+    document.addEventListener('click', function (e) {
+        const card = e.target && e.target.closest ? e.target.closest('.member-card') : null;
+        if (card && card.dataset.player) {
             openPlayerModal(card.dataset.player);
-        });
-        card.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openPlayerModal(card.dataset.player);
-            }
-        });
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const card = e.target && e.target.closest ? e.target.closest('.member-card') : null;
+        if (card && card.dataset.player) {
+            e.preventDefault();
+            openPlayerModal(card.dataset.player);
+        }
     });
 
     if (playerModalClose) {
