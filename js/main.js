@@ -27,7 +27,7 @@
         siqueira: {
             nome: 'Martins',
             role: 'Rocket League',
-            iniciais: 'SI',
+            iniciais: 'MA',
             frase: 'Chute forte, mentira nenhuma.',
             bio: 'A força bruta do TW7 nas quadras de Rocket League. Martins é o jogador de presença física: chutes potentes, disputas ganhas e uma leitura de jogo que transforma rebotes em gol. Complementa o elenco com consistência e determinação em todos os treinos.'
         }
