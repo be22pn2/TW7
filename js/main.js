@@ -163,6 +163,7 @@
     }
 
     function normalizeRecord(record) {
+        const pay = record.pay && typeof record.pay === 'object' ? record.pay : {};
         return {
             events: Array.isArray(record.events) ? record.events : [],
             stream: record.stream && typeof record.stream === 'object'
@@ -171,7 +172,15 @@
                     title: String(record.stream.title || ''),
                     active: !!record.stream.active
                 }
-                : { url: '', title: '', active: false }
+                : { url: '', title: '', active: false },
+            pay: {
+                pixKey: String(pay.pixKey || ''),
+                pixName: String(pay.pixName || ''),
+                pixCity: String(pay.pixCity || ''),
+                linkIniciante: String(pay.linkIniciante || ''),
+                linkApoiador: String(pay.linkApoiador || ''),
+                linkElite: String(pay.linkElite || '')
+            }
         };
     }
 
@@ -312,7 +321,7 @@
             adminLocked.hidden = true;
             adminPanel.hidden = false;
             setAdminStatus('');
-            await Promise.all([loadAdminEvents(), loadAdminStream()]);
+            await Promise.all([loadAdminEvents(), loadAdminStream(), loadAdminPay()]);
         } catch (err) {
             adminKey = null;
             setAdminStatus('Chave inválida.', true);
@@ -442,6 +451,51 @@
             } catch (err) {
                 setAdminStatus('Erro ao encerrar a live.', true);
                 console.error(err);
+            }
+        });
+    }
+
+    /* ===== Pagamentos (admin) ===== */
+    const adminPayForm = document.getElementById('admin-pay-form');
+
+    async function loadAdminPay() {
+        try {
+            const record = await fetchRecord('Master');
+            document.getElementById('admin-pix-key').value = record.pay.pixKey;
+            document.getElementById('admin-pix-name').value = record.pay.pixName;
+            document.getElementById('admin-pix-city').value = record.pay.pixCity;
+            document.getElementById('admin-link-iniciante').value = record.pay.linkIniciante;
+            document.getElementById('admin-link-apoiador').value = record.pay.linkApoiador;
+            document.getElementById('admin-link-elite').value = record.pay.linkElite;
+        } catch (err) {
+            console.error('Erro ao carregar pagamentos:', err);
+        }
+    }
+
+    if (adminPayForm) {
+        adminPayForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = adminPayForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Salvando...';
+            try {
+                const record = await fetchRecord('Master');
+                record.pay = {
+                    pixKey: document.getElementById('admin-pix-key').value.trim(),
+                    pixName: document.getElementById('admin-pix-name').value.trim(),
+                    pixCity: document.getElementById('admin-pix-city').value.trim(),
+                    linkIniciante: document.getElementById('admin-link-iniciante').value.trim(),
+                    linkApoiador: document.getElementById('admin-link-apoiador').value.trim(),
+                    linkElite: document.getElementById('admin-link-elite').value.trim()
+                };
+                await saveRecord(record);
+                setAdminStatus('Pagamentos salvos!');
+            } catch (err) {
+                setAdminStatus('Erro ao salvar pagamentos.', true);
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Salvar pagamentos';
             }
         });
     }

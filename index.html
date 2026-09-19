@@ -239,6 +239,24 @@
                     <p class="modal-hint">Quando ativo, a página "Sala AO VIVO" mostra o telão automaticamente.</p>
                 </form>
 
+                <h4 class="admin-subtitle">Pagamentos</h4>
+                <form id="admin-pay-form">
+                    <label class="contact-form-label" for="admin-pix-key">Chave Pix</label>
+                    <input type="text" id="admin-pix-key" class="admin-input" placeholder="CPF, CNPJ, e-mail, celular ou aleatória">
+                    <label class="contact-form-label" for="admin-pix-name">Nome do recebedor</label>
+                    <input type="text" id="admin-pix-name" class="admin-input" placeholder="Ex.: TW7 Group">
+                    <label class="contact-form-label" for="admin-pix-city">Cidade</label>
+                    <input type="text" id="admin-pix-city" class="admin-input" placeholder="Ex.: São Paulo">
+                    <label class="contact-form-label" for="admin-link-iniciante">Link de pagamento - Iniciante (cartão/boleto/PayPal)</label>
+                    <input type="url" id="admin-link-iniciante" class="admin-input" placeholder="https://...">
+                    <label class="contact-form-label" for="admin-link-apoiador">Link de pagamento - Apoiador</label>
+                    <input type="url" id="admin-link-apoiador" class="admin-input" placeholder="https://...">
+                    <label class="contact-form-label" for="admin-link-elite">Link de pagamento - Elite</label>
+                    <input type="url" id="admin-link-elite" class="admin-input" placeholder="https://...">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar pagamentos</button>
+                    <p class="modal-hint">Deixe a chave Pix preenchida para gerar o QR no site. Os links aparecem como botões por plano.</p>
+                </form>
+
                 <form id="admin-event-form">
                     <h4 class="admin-subtitle">Adicionar evento à agenda</h4>
                     <label class="contact-form-label" for="admin-date">Data</label>

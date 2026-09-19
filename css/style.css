@@ -915,6 +915,51 @@ ul {
     font-weight: 700;
 }
 
+/* ===== Pagamento ===== */
+.pay-left {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pay-pix,
+.pay-link-area {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 26px;
+    text-align: center;
+}
+
+.pay-title {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pix-qr {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.pix-qr img,
+.pix-qr canvas {
+    border-radius: 8px;
+    background: #fff;
+    padding: 8px;
+}
+
+.pix-amount {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: var(--red-bright);
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
 /* ===== Admin ===== */
 .admin-fab {
     position: fixed;
