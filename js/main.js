@@ -93,9 +93,11 @@
     const form = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
 
-    const BACKEND_URL = 'http://localhost:3000';
+    const EMAILJS_PUBLIC_KEY = '1fM2XnY20V-VwYVuX';
 
     if (form) {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
@@ -113,16 +115,10 @@
             };
 
             try {
-                const response = await fetch(BACKEND_URL + '/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                const response = await emailjs.send('service_guyqafr', 'template_detjlid', payload);
 
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.error || 'Erro ao enviar.');
+                if (response.status !== 200) {
+                    throw new Error('Falha no envio.');
                 }
 
                 form.reset();
