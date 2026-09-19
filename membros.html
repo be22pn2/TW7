@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Planos e benefícios de membro do TW7 - escolha o seu e faça parte da família.">
+    <title>TW7 | Seja Membro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">TW<span class="logo-accent">7</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Voltar ao site</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section plan-header">
+        <div class="container plan-header-inner">
+            <p class="hero-tag">TW7 Membership</p>
+            <h1 class="plan-main-title">Escolha seu <span class="accent-text">plano</span></h1>
+            <p class="plan-main-subtitle">Cada benefício foi pensado para aproximar você do time e do cenário competitivo.</p>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="planos">
+        <div class="container">
+            <div class="plans-grid">
+
+                <article class="plan-card">
+                    <h3 class="plan-name">Comum</h3>
+                    <p class="plan-price">Grátis</p>
+                    <ul class="plan-benefits">
+                        <li>Comunidade e Discord</li>
+                        <li>Acesso ao telão AO VIVO</li>
+                        <li>Acompanhar os treinos</li>
+                        <li>Notícias do time</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block plan-pick" data-plano="Comum">Quero este plano</button>
+                </article>
+
+                <article class="plan-card plan-featured">
+                    <span class="plan-badge">Mais popular</span>
+                    <h3 class="plan-name">Apoiador</h3>
+                    <p class="plan-price">R$ 9,90<span class="plan-period">/mês</span></p>
+                    <ul class="plan-benefits">
+                        <li>Tudo do plano Comum</li>
+                        <li>Prioridade em treinos & scrims</li>
+                        <li>Insígnia de membro no Discord</li>
+                        <li>Votação de decisões do time</li>
+                        <li>Sorteios de brindes</li>
+                    </ul>
+                    <button class="btn btn-primary btn-block plan-pick" data-plano="Apoiador">Quero este plano</button>
+                </article>
+
+                <article class="plan-card">
+                    <h3 class="plan-name">Elite</h3>
+                    <p class="plan-price">R$ 19,90<span class="plan-period">/mês</span></p>
+                    <ul class="plan-benefits">
+                        <li>Tudo do plano Apoiador</li>
+                        <li>Seletiva para campeonatos</li>
+                        <li>Bastidores e reuniões do time</li>
+                        <li>Nome nos créditos do site</li>
+                        <li>Como players exclusivos de live</li>
+                    </ul>
+                    <button class="btn btn-outline btn-block plan-pick" data-plano="Elite">Quero este plano</button>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="inscricao">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quero ser <span class="accent-text">membro</span></h2>
+                <p class="section-subtitle" id="plan-selected">Preencha e nós retornamos com os detalhes</p>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form" id="member-form">
+                    <label for="member-nome">Nome</label>
+                    <input type="text" id="member-nome" name="nome" placeholder="Seu nome" required>
+
+                    <label for="member-email">E-mail</label>
+                    <input type="email" id="member-email" name="email" placeholder="voce@email.com" required>
+
+                    <label for="member-tag">Sua tag</label>
+                    <input type="text" id="member-tag" name="tag" placeholder="GamerTag / Nickname">
+
+                    <label for="member-plano">Plano escolhido</label>
+                    <select id="member-plano" name="plano">
+                        <option value="Comum">Comum (Grátis)</option>
+                        <option value="Apoiador">Apoiador (R$ 9,90/mês)</option>
+                        <option value="Elite">Elite (R$ 19,90/mês)</option>
+                    </select>
+
+                    <label for="member-mensagem">Mensagem</label>
+                    <textarea id="member-mensagem" name="mensagem" rows="4" placeholder="Alguma observação?"></textarea>
+
+                    <button type="submit" class="btn btn-primary btn-block">Quero ser membro</button>
+                    <p class="form-status" id="member-status" aria-live="polite"></p>
+                </form>
+                <div class="contact-info">
+                    <h3>O que acontece depois</h3>
+                    <ul>
+                        <li>Você envia a solicitação do plano</li>
+                        <li>Nossa equipe confirma por e-mail</li>
+                        <li>Você recebe as instruções de pagamento</li>
+                        <li>Ativamos seus benefícios e o acesso</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <span class="footer-logo">TW<span class="logo-accent">7</span></span>
+            <p>© 2026 TW7 eSports. Feito pela comunidade, para a comunidade.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/membros.js"></script>
+</body>
+</html>
