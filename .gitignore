@@ -1,0 +1,8 @@
+# Arquivos pessoais (sem versão)
+notas.md
+guia-ranks-rl.png
+ideias-videos.png
+
+# Node
+node_modules/
+backend/.env
