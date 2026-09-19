@@ -796,170 +796,6 @@ ul {
     margin-top: 6px;
 }
 
-/* ===== Planos de membro ===== */
-.plan-header {
-    text-align: center;
-    padding-top: 120px;
-    padding-bottom: 40px;
-}
-
-.plan-header-inner {
-    max-width: 720px;
-    margin: 0 auto;
-}
-
-.plan-main-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--text);
-    margin: 10px 0 16px;
-}
-
-.plan-main-subtitle {
-    color: var(--text-dim);
-    font-size: 1.15rem;
-}
-
-.plans-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    align-items: stretch;
-}
-
-.plan-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 32px 28px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.plan-card:hover {
-    border-color: var(--red);
-    transform: translateY(-6px);
-    box-shadow: 0 14px 40px rgba(225, 6, 0, 0.15);
-}
-
-.plan-featured {
-    border-color: var(--red);
-    box-shadow: 0 0 30px rgba(225, 6, 0, 0.18);
-}
-
-.plan-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
-    color: var(--text);
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    font-size: 0.72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 20px;
-    white-space: nowrap;
-    box-shadow: 0 0 16px var(--glow);
-}
-
-.plan-name {
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text);
-    text-align: center;
-    margin-bottom: 12px;
-}
-
-.plan-price {
-    text-align: center;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: var(--red-bright);
-    margin-bottom: 22px;
-}
-
-.plan-period {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    font-weight: 500;
-    margin-left: 2px;
-}
-
-.plan-benefits {
-    flex: 1;
-    margin-bottom: 26px;
-}
-
-.plan-benefits li {
-    padding: 9px 0 9px 22px;
-    position: relative;
-    color: var(--text-dim);
-    font-size: 1.02rem;
-    border-bottom: 1px dashed var(--border);
-}
-
-.plan-benefits li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--red-bright);
-    font-weight: 700;
-}
-
-/* ===== Pagamento ===== */
-.pay-left {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.pay-pix,
-.pay-link-area {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 26px;
-    text-align: center;
-}
-
-.pay-title {
-    font-size: 1.1rem;
-    color: var(--text);
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.pix-qr {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 14px;
-}
-
-.pix-qr img,
-.pix-qr canvas {
-    border-radius: 8px;
-    background: #fff;
-    padding: 8px;
-}
-
-.pix-amount {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 700;
-    color: var(--red-bright);
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-}
-
 /* ===== Admin ===== */
 .admin-fab {
     position: fixed;
@@ -1331,8 +1167,7 @@ ul {
     }
 
     .games-grid,
-    .team-grid,
-    .plans-grid {
+    .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1392,8 +1227,7 @@ ul {
     }
 
     .games-grid,
-    .team-grid,
-    .plans-grid {
+    .team-grid {
         grid-template-columns: 1fr;
     }
 
