@@ -138,4 +138,234 @@
             }
         });
     }
+
+    /* ===== Agenda (jsonbin) ===== */
+    const JSONBIN = {
+        binId: '6aae709effd5d16053191a89',
+        readKey: '$2a$10$2LfXb4HLK5pXlZTiVuFBN.zV7Aa02TscYBWYoOv00FSDOJLbIWPHq'
+    };
+
+    let adminKey = null;
+
+    function formatDate(value) {
+        if (!value) return '';
+        const parts = String(value).split('-');
+        if (parts.length !== 3) return value;
+        return parts[2] + '/' + parts[1] + '/' + parts[0];
+    }
+
+    function sortEvents(events) {
+        return events
+            .slice()
+            .sort(function (a, b) {
+                return String(a.date).localeCompare(String(b.date));
+            });
+    }
+
+    async function fetchEvents(keyHeader) {
+        const headers = {};
+        headers['X-' + keyHeader + '-Key'] = keyHeader === 'Master' ? adminKey : JSONBIN.readKey;
+        const url = 'https://api.jsonbin.io/v3/b/' + JSONBIN.binId + '/latest';
+        const response = await fetch(url, { headers: headers });
+        if (!response.ok) {
+            throw new Error('Falha ao ler agenda.');
+        }
+        const json = await response.json();
+        return Array.isArray(json.record.events) ? json.record.events : [];
+    }
+
+    async function saveEvents(events) {
+        const url = 'https://api.jsonbin.io/v3/b/' + JSONBIN.binId;
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'X-Master-Key': adminKey,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ events: events })
+        });
+        if (!response.ok) {
+            throw new Error('Falha ao salvar agenda.');
+        }
+    }
+
+    const scheduleList = document.getElementById('schedule-list');
+
+    async function renderPublicSchedule() {
+        try {
+            const events = sortEvents(await fetchEvents('Access'));
+            if (!events.length) {
+                scheduleList.innerHTML = '<p class="schedule-empty">Nenhuma partida agendada no momento.</p>';
+                return;
+            }
+            scheduleList.innerHTML = '';
+            events.forEach(function (event) {
+                const item = document.createElement('div');
+                item.className = 'schedule-item';
+                item.innerHTML =
+                    '<span class="schedule-date">' + formatDate(event.date) + '</span>' +
+                    '<span class="schedule-match"><strong>TW7</strong> ' + escapeHtmlField(event.match) + '</span>' +
+                    '<span class="schedule-tournament">' + escapeHtmlField(event.tournament) + '</span>';
+                scheduleList.appendChild(item);
+            });
+        } catch (err) {
+            scheduleList.innerHTML = '<p class="schedule-empty">Não foi possível carregar a agenda.</p>';
+            console.error('Erro ao carregar agenda:', err);
+        }
+    }
+
+    function escapeHtmlField(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    /* ===== Área do time ===== */
+    const adminFab = document.getElementById('admin-fab');
+    const adminModal = document.getElementById('admin-modal');
+    const modalClose = document.getElementById('modal-close');
+    const adminLocked = document.getElementById('admin-locked');
+    const adminPanel = document.getElementById('admin-panel');
+    const adminStatus = document.getElementById('admin-status');
+    const adminUnlock = document.getElementById('admin-unlock');
+    const adminKeyInput = document.getElementById('admin-key');
+    const adminEventForm = document.getElementById('admin-event-form');
+    const adminEventsList = document.getElementById('admin-events-list');
+
+    function setAdminStatus(text, isError) {
+        if (adminStatus) {
+            adminStatus.textContent = text;
+            adminStatus.className = 'form-status ' + (isError ? 'error' : 'success');
+        }
+    }
+
+    function openModal() {
+        adminModal.classList.add('open');
+        adminModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        adminModal.classList.remove('open');
+        adminModal.setAttribute('aria-hidden', 'true');
+    }
+
+    adminFab.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+    adminModal.addEventListener('click', function (e) {
+        if (e.target === adminModal) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    adminUnlock.addEventListener('click', unlockAdmin);
+    adminKeyInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            unlockAdmin();
+        }
+    });
+
+    async function unlockAdmin() {
+        const key = adminKeyInput.value.trim();
+        if (!key) {
+            setAdminStatus('Digite a chave de acesso.', true);
+            return;
+        }
+        adminUnlock.disabled = true;
+        adminUnlock.textContent = 'Verificando...';
+        setAdminStatus('');
+
+        try {
+            adminKey = key;
+            await fetchEvents('Master');
+            adminLocked.hidden = true;
+            adminPanel.hidden = false;
+            setAdminStatus('');
+            await loadAdminEvents();
+        } catch (err) {
+            adminKey = null;
+            setAdminStatus('Chave inválida.', true);
+        } finally {
+            adminUnlock.disabled = false;
+            adminUnlock.textContent = 'Entrar';
+        }
+    }
+
+    async function loadAdminEvents() {
+        try {
+            const events = sortEvents(await fetchEvents('Master'));
+            adminEventsList.innerHTML = '';
+            if (!events.length) {
+                adminEventsList.innerHTML = '<p class="modal-hint">Sem eventos cadastrados.</p>';
+                return;
+            }
+            events.forEach(function (event, index) {
+                const row = document.createElement('div');
+                row.className = 'admin-event';
+                row.innerHTML =
+                    '<div class="admin-event-info">' +
+                        '<strong>' + formatDate(event.date) + ' — ' + escapeHtmlField(event.match) + '</strong>' +
+                        '<span>' + escapeHtmlField(event.tournament) + '</span>' +
+                    '</div>' +
+                    '<button class="admin-delete" data-index="' + index + '">Excluir</button>';
+                adminEventsList.appendChild(row);
+            });
+
+            adminEventsList.querySelectorAll('.admin-delete').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    deleteEvent(parseInt(btn.dataset.index, 10));
+                });
+            });
+        } catch (err) {
+            setAdminStatus('Não foi possível carregar os eventos.', true);
+        }
+    }
+
+    adminEventForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const date = document.getElementById('admin-date').value;
+        const match = document.getElementById('admin-match').value.trim();
+        const tournament = document.getElementById('admin-tournament').value.trim() || 'Campeonato';
+
+        const btn = adminEventForm.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Salvando...';
+
+        try {
+            const events = await fetchEvents('Master');
+            events.push({ date: date, match: match, tournament: tournament });
+            await saveEvents(events);
+            adminEventForm.reset();
+            setAdminStatus('Evento adicionado!');
+            await Promise.all([loadAdminEvents(), renderPublicSchedule()]);
+        } catch (err) {
+            setAdminStatus('Erro ao salvar o evento.', true);
+            console.error(err);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Adicionar evento';
+        }
+    });
+
+    async function deleteEvent(index) {
+        try {
+            const events = await fetchEvents('Master');
+            events.splice(index, 1);
+            await saveEvents(events);
+            setAdminStatus('Evento excluído.');
+            await Promise.all([loadAdminEvents(), renderPublicSchedule()]);
+        } catch (err) {
+            setAdminStatus('Erro ao excluir o evento.', true);
+            console.error(err);
+        }
+    }
+
+    renderPublicSchedule();
 })();

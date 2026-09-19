@@ -147,8 +147,8 @@
                 <h2 class="section-title">Agenda</h2>
                 <p class="section-subtitle">Próximas partidas e campeonatos</p>
             </div>
-            <div class="schedule-list">
-                <p class="schedule-empty">Nenhuma partida agendada no momento.</p>
+            <div class="schedule-list" id="schedule-list">
+                <p class="schedule-empty">Carregando agenda...</p>
             </div>
         </div>
     </section>
@@ -196,6 +196,37 @@
             </div>
         </div>
     </section>
+
+    <button class="admin-fab" id="admin-fab" aria-label="Área do time" title="Área do time">🔐</button>
+
+    <div class="modal" id="admin-modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Fechar">×</button>
+            <h3 class="modal-title">Área do time</h3>
+
+            <div id="admin-locked">
+                <p class="modal-hint">Digite a chave de acesso para gerenciar a agenda.</p>
+                <label class="contact-form-label" for="admin-key">Chave de acesso</label>
+                <input type="password" id="admin-key" class="admin-input" placeholder="Chave secreta" autocomplete="off">
+                <button class="btn btn-primary btn-block" id="admin-unlock">Entrar</button>
+                <p class="form-status" id="admin-status" aria-live="polite"></p>
+            </div>
+
+            <div id="admin-panel" hidden>
+                <form id="admin-event-form">
+                    <label class="contact-form-label" for="admin-date">Data</label>
+                    <input type="date" id="admin-date" class="admin-input" required>
+                    <label class="contact-form-label" for="admin-match">Partida</label>
+                    <input type="text" id="admin-match" class="admin-input" placeholder="TW7 x Time rival" required>
+                    <label class="contact-form-label" for="admin-tournament">Torneio</label>
+                    <input type="text" id="admin-tournament" class="admin-input" placeholder="Nome do campeonato">
+                    <button type="submit" class="btn btn-primary btn-block">Adicionar evento</button>
+                </form>
+                <h4 class="admin-subtitle">Eventos atuais</h4>
+                <div id="admin-events-list" class="admin-events-list"></div>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container footer-content">
