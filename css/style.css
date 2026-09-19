@@ -797,6 +797,22 @@ ul {
     box-shadow: 0 10px 30px var(--glow);
 }
 
+.telao-fab {
+    left: 24px;
+    right: auto;
+    background: linear-gradient(135deg, #7a0000 0%, var(--red) 100%);
+    border: 2px solid var(--red-bright);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.telao-fab:hover {
+    text-decoration: none;
+}
+
 .modal {
     position: fixed;
     inset: 0;
