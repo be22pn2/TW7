@@ -38,12 +38,12 @@
             frase: 'Velocidade com propósito.',
             bio: 'Julio Bjorn é o motor do ataque do TW7 no Rocket League. Junta a velocidade de quem entra na bola antes de todo mundo com a frieza de quem pensa dois toques à frente: pressiona alto, cria contra-ataques e transforma intensidade em gol. Quando o jogo pede ritmo, é ele quem dita.'
         },
-        savior: {
-            nome: 'Savior',
+        fortin: {
+            nome: 'Fortin',
             role: 'Fortnite',
-            iniciais: 'SV',
+            iniciais: 'FO',
             frase: 'Enquanto houver uma chance, eu salvo.',
-            bio: 'O nome diz tudo. Savior aparece quando a partida parece perdida: clutch, revives e jogadas improváveis que viram o jogo. Especialista em finais de partida, ele carrega a calma de quem já viu de tudo e a fome de quem ainda quer tudo.'
+            bio: 'Fortin aparece quando a partida parece perdida: clutch, revives e jogadas improváveis que viram o jogo. Especialista em finais de partida, ele carrega a calma de quem já viu de tudo e a fome de quem ainda quer tudo.'
         }
     };
 
