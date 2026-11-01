@@ -30,6 +30,27 @@
             iniciais: 'MR',
             frase: 'Em busca da defesa perfeita.',
             bio: 'Goleiro em fase de aprendizado, mas que já demonstra bons reflexos e segurança em momentos importantes. Tem facilidade para afastar bolas perigosas, bons tempos de reação e vem evoluindo a cada partida. Ainda tem muito a aprender, mas já mostra potencial para se tornar uma peça importante no gol.'
+        },
+        julio: {
+            nome: 'Julio',
+            role: 'Rocket League',
+            iniciais: 'JU',
+            frase: 'Velocidade é a minha assinatura.',
+            bio: 'O combustível do ataque. Julio joga no limite da velocidade, entrando na bola antes de todo mundo e transformando contra-ataques em gols. Sua pressão constante desestabiliza qualquer defesa e abre espaço para os companheiros brilharem. Quando o jogo pede intensidade, é ele quem acelera o ritmo.'
+        },
+        bjorn: {
+            nome: 'Bjorn',
+            role: 'Fortnite',
+            iniciais: 'BJ',
+            frase: 'Construir, controlar, vencer.',
+            bio: 'Frieza nórdica no meio do caos. Bjorn é o estrategista do TW7 em Fortnite: constrói com método, controla a zona e toma as decisões que mantêm o time vivo até o fim. Não é o mais barulhento do lobby — é o que aparece na Victory Royale.'
+        },
+        savior: {
+            nome: 'Savior',
+            role: 'Fortnite',
+            iniciais: 'SV',
+            frase: 'Enquanto houver uma chance, eu salvo.',
+            bio: 'O nome diz tudo. Savior aparece quando a partida parece perdida: clutch, revives e jogadas improváveis que viram o jogo. Especialista em finais de partida, ele carrega a calma de quem já viu de tudo e a fome de quem ainda quer tudo.'
         }
     };
 
