@@ -32,18 +32,11 @@
             bio: 'Goleiro em fase de aprendizado, mas que já demonstra bons reflexos e segurança em momentos importantes. Tem facilidade para afastar bolas perigosas, bons tempos de reação e vem evoluindo a cada partida. Ainda tem muito a aprender, mas já mostra potencial para se tornar uma peça importante no gol.'
         },
         julio: {
-            nome: 'Julio',
+            nome: 'Julio Bjorn',
             role: 'Rocket League',
-            iniciais: 'JU',
-            frase: 'Velocidade é a minha assinatura.',
-            bio: 'O combustível do ataque. Julio joga no limite da velocidade, entrando na bola antes de todo mundo e transformando contra-ataques em gols. Sua pressão constante desestabiliza qualquer defesa e abre espaço para os companheiros brilharem. Quando o jogo pede intensidade, é ele quem acelera o ritmo.'
-        },
-        bjorn: {
-            nome: 'Bjorn',
-            role: 'Fortnite',
-            iniciais: 'BJ',
-            frase: 'Construir, controlar, vencer.',
-            bio: 'Frieza nórdica no meio do caos. Bjorn é o estrategista do TW7 em Fortnite: constrói com método, controla a zona e toma as decisões que mantêm o time vivo até o fim. Não é o mais barulhento do lobby — é o que aparece na Victory Royale.'
+            iniciais: 'JB',
+            frase: 'Velocidade com propósito.',
+            bio: 'Julio Bjorn é o motor do ataque do TW7 no Rocket League. Junta a velocidade de quem entra na bola antes de todo mundo com a frieza de quem pensa dois toques à frente: pressiona alto, cria contra-ataques e transforma intensidade em gol. Quando o jogo pede ritmo, é ele quem dita.'
         },
         savior: {
             nome: 'Savior',
